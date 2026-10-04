@@ -48,7 +48,7 @@ NOME_DA_MARCA = "Mimi Brownies"
 
 SENHA_ADMIN = os.environ.get(
     "SENHA_ADMIN",
-    "brownies2024"
+    "Doces2027"
 )
 
 ENDERECO_LOJA = (
