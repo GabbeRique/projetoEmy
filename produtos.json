@@ -1,0 +1,182 @@
+[
+    {
+        "id": "palha-italiana",
+        "nome": "Palha italiana",
+        "desc": "Cremosa e muito saborosa, nossa palha italiana vai deixar seu dia mais feliz e mais leve.",
+        "preco": 6.0,
+        "imagem": "imagens/palha-italiana.jpg",
+        "categoria": "doces",
+        "tags": [
+            "Novidade",
+            "Promoção"
+        ]
+    },
+    {
+        "id": "cookie-nutella",
+        "nome": "Cookie recheado de Nutella",
+        "desc": "Cookie macio com casca levemente crocante e generoso recheio cremoso de Nutella.",
+        "preco": 10.0,
+        "imagem": "imagens/cookie-nutella.jpg",
+        "categoria": "doces",
+        "tags": [
+            "Novidade"
+        ]
+    },
+    {
+        "id": "cookie-kinder-bueno",
+        "nome": "Cookie Kinder Bueno",
+        "desc": "Nossa já consagrada massa de cookie acompanhada com recheio Caribe Bueno da Master Martini, cremoso e com pedacinhos de avelã.",
+        "preco": 10.0,
+        "imagem": "imagens/cookie-kinder-bueno.jpg",
+        "categoria": "doces",
+        "tags": []
+    },
+    {
+        "id": "ninho-nutella",
+        "nome": "Brownie Ninho com Nutella",
+        "desc": "Se você deseja experimentar um pedaço do céu. Essa é a sua melhor oportunidade. A Nutella cremosa combina perfeitamente com o sabor suave do leite Ninho.",
+        "preco": 10.0,
+        "imagem": "imagens/brownie-ninho-nutella.jpg",
+        "categoria": "brownies-recheados",
+        "tags": [
+            "+ Vendido"
+        ]
+    },
+    {
+        "id": "ferrero",
+        "nome": "Ferrero",
+        "desc": "Massa deliciosa da Mimi Brownies com um brigadeiro cremoso de chocolate e uma camada generosa de creme de avelã, inspirado no clássico Ferrero Rocher.",
+        "preco": 10.0,
+        "imagem": "imagens/brownie-ferrero.jpg",
+        "categoria": "brownies-recheados",
+        "tags": []
+    },
+    {
+        "id": "ninho-morango",
+        "nome": "Brownie de ninho com morango",
+        "desc": "Este brownie possui uma massa equilibrada nem muito doce nem muito amarga. Vem recheado com creme de Ninho e pedaços de morango fresco.",
+        "preco": 10.0,
+        "imagem": "imagens/brownie-ninho-morango.jpg",
+        "categoria": "brownies-recheados",
+        "tags": []
+    },
+    {
+        "id": "brownie-brigadeiro",
+        "nome": "Brownie de Brigadeiro",
+        "desc": "Um brigadeiro de chocolate meio amargo, com uma textura cremosa e o sabor do verdadeiro chocolate belga envolvido na massa de brownie.",
+        "preco": 10.0,
+        "imagem": "imagens/brownie-brigadeiro.jpg",
+        "categoria": "brownies-recheados",
+        "tags": []
+    },
+    {
+        "id": "bem-casado",
+        "nome": "Brownie De Bem Casado",
+        "desc": "Brownie de massa tradicional com o recheio que já ganhou o coração do brasileiro. Bem casado cremoso de leite em pó com casquinha fina de açúcar.",
+        "preco": 10.0,
+        "imagem": "imagens/brownie-bem-casado.jpg",
+        "categoria": "brownies-recheados",
+        "tags": []
+    },
+    {
+        "id": "brownie-beijinho",
+        "nome": "Brownie de Beijinho",
+        "desc": "Este é o queridinho da Mimi, um dos mais vendidos. É recheado com um brigadeiro de coco macio com cobertura de coco ralado fresco.",
+        "preco": 10.0,
+        "imagem": "imagens/brownie-beijinho.jpg",
+        "categoria": "brownies-recheados",
+        "tags": []
+    },
+    {
+        "id": "ninho",
+        "nome": "Brownie de Ninho",
+        "desc": "Brownie de massa equilibrada, nem muito doce e nem muito muito amarga. Recheado com o brigadeiro de leite Ninho cremoso e suave.",
+        "preco": 10.0,
+        "imagem": "imagens/brownie-ninho.jpg",
+        "categoria": "brownies-recheados",
+        "tags": []
+    },
+    {
+        "id": "choconinho-300ml",
+        "nome": "Choconinho 300ml",
+        "desc": "Um delicioso copo com 300ml de puro sabor, recheado com o nosso creme especial de ninho com cobertura de chocolate trufado.",
+        "preco": 25.0,
+        "imagem": "imagens/copo-choconinho.jpg",
+        "categoria": "copo-da-felicidade",
+        "tags": [
+            "+ Vendido"
+        ]
+    },
+    {
+        "id": "copo-explosao",
+        "nome": "Copo explosão",
+        "desc": "Nosso copo da felicidade de ninho com morango é uma experiência saborosa e divertida. Camadas de brownie, brigadeiro de Ninho, morangos frescos e granulado.",
+        "preco": 22.0,
+        "imagem": "imagens/copo-explosao.jpg",
+        "categoria": "copo-da-felicidade",
+        "tags": []
+    },
+    {
+        "id": "brownie-tradicional-10pts",
+        "nome": "Brownie Tradicional 10pts",
+        "desc": "O Brownie mais gostoso que você irá comer na sua vida. Super equilibrado, nem muito doce, nem muito amargo. Pedaço generoso de massa tradicional.",
+        "preco": 7.0,
+        "imagem": "imagens/brownie-tradicional.jpg",
+        "categoria": "tradicional",
+        "tags": []
+    },
+    {
+        "id": "casquinha-simples",
+        "nome": "Casquinha simples",
+        "desc": "A casquinha é a parte mais crocante e menos doce do brownie. É perfeita para acompanhar um café ou um sorvete.",
+        "preco": 3.0,
+        "imagem": "imagens/casquinha-simples.jpg",
+        "categoria": "casquinha",
+        "tags": []
+    },
+    {
+        "id": "casquinha-suprema",
+        "nome": "Casquinha suprema",
+        "desc": "A casquinha é um dos produtos mais amados que temos por aqui. E nessa versão cheia de brigadeiro cremoso, confeitos coloridos e cobertura especial.",
+        "preco": 23.0,
+        "imagem": "imagens/casquinha-suprema.jpg",
+        "categoria": "casquinha",
+        "tags": []
+    },
+    {
+        "id": "coxinha-frango",
+        "nome": "Coxinha de frango",
+        "desc": "Uma coxinha recheada com frango com um super tempero especial da casa, crocante por fora e macia por dentro.",
+        "preco": 6.0,
+        "imagem": "imagens/coxinha-frango.jpg",
+        "categoria": "salgados",
+        "tags": []
+    },
+    {
+        "id": "coxinha-frango-cream-cheese",
+        "nome": "Coxinha de frango com cream cheese",
+        "desc": "A nossa coxinha maravilhosa e super temperada de frango e com o recheio de cream cheese que derrete na boca.",
+        "preco": 8.0,
+        "imagem": "imagens/coxinha-cream-cheese.jpg",
+        "categoria": "salgados",
+        "tags": []
+    },
+    {
+        "id": "coca-lata",
+        "nome": "Coca em Lata",
+        "desc": "Refrigerante Coca-Cola em lata gelado de 350ml.",
+        "preco": 6.0,
+        "imagem": "imagens/coca-lata.jpg",
+        "categoria": "bebidas",
+        "tags": []
+    },
+    {
+        "id": "agua-sem-gas",
+        "nome": "Água sem gás",
+        "desc": "Água sem gás 500ml, perfeitamente gelada.",
+        "preco": 2.0,
+        "imagem": "imagens/agua-sem-gas.jpg",
+        "categoria": "bebidas",
+        "tags": []
+    }
+]

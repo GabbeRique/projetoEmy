@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Painel administrativo - {{ marca }}
+    </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f3ee;
+            color: #3b2418;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #3b2418;
+        }
+
+        .barra-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .barra-topo form {
+            margin: 0;
+        }
+
+        .sair {
+            padding: 8px 16px;
+            background: #a98f77;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .bloco {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #6b3e26;
+            color: white;
+            font-size: 15px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .excluir {
+            background: #a83232;
+        }
+
+        .editar {
+            background: #c9a14a;
+            margin-right: 8px;
+        }
+
+        .acoes {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .acoes button {
+            margin-top: 0;
+        }
+
+        .miniatura {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .produto {
+            background: white;
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .produto-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .produto-texto {
+            flex: 1;
+        }
+
+        .produto-texto h3 {
+            margin-top: 0;
+        }
+
+        .preco {
+            font-weight: bold;
+            color: #6b3e26;
+        }
+
+        .categoria-produto {
+            display: inline-block;
+            background: #f0e3d7;
+            color: #6b3e26;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        a {
+            color: #6b3e26;
+        }
+
+        .categoria-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid #eee;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .categoria-info {
+            flex: 1;
+        }
+
+        .categoria-info h3 {
+            margin: 0 0 5px;
+        }
+
+        .categoria-info p {
+            margin: 0;
+            color: #7a5c4a;
+        }
+
+        .categoria-slug {
+            font-size: 12px;
+            color: #999;
+            margin-top: 6px !important;
+        }
+
+        .aviso {
+            color: #7a5c4a;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .campo-tags {
+            font-size: 14px;
+        }
+
+        @media (max-width: 650px) {
+            .produto {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .produto-info {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .categoria-item {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .acoes {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="barra-topo">
+
+        <h1 style="margin: 0;">
+            Painel administrativo
+        </h1>
+
+        <form
+            action="{{ url_for('logout_admin') }}"
+            method="POST"
+            onsubmit="return confirm('Tem certeza que deseja sair?');"
+        >
+            <button
+                type="submit"
+                class="sair"
+            >
+                Sair
+            </button>
+        </form>
+
+    </div>
+
+    <p>
+        <a href="/">
+            ← Voltar para a loja
+        </a>
+    </p>
+
+
+    <!-- =====================================================
+         CATEGORIAS
+    ====================================================== -->
+
+    <div class="bloco">
+
+        <h2>
+            Gerenciar categorias
+        </h2>
+
+        <p class="aviso">
+            Crie categorias para organizar os produtos
+            do cardápio. Depois, ao cadastrar um produto,
+            você poderá escolher em qual categoria ele ficará.
+        </p>
+
+        <form
+            action="{{ url_for('adicionar_categoria') }}"
+            method="POST"
+        >
+
+            <label for="titulo_categoria">
+                Nome da categoria
+            </label>
+
+            <input
+                type="text"
+                id="titulo_categoria"
+                name="titulo"
+                placeholder="Ex: Brownies Especiais"
+                required
+            >
+
+            <label for="descricao_categoria">
+                Descrição
+            </label>
+
+            <textarea
+                id="descricao_categoria"
+                name="descricao"
+                placeholder="Ex: Confira nossos brownies especiais..."
+            ></textarea>
+
+            <button type="submit">
+                + Criar categoria
+            </button>
+
+        </form>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 28px 0;">
+
+        <h3>
+            Categorias cadastradas
+        </h3>
+
+        {% for categoria in categorias %}
+
+        <div class="categoria-item">
+
+            <div class="categoria-info">
+
+                <h3>
+                    {{ categoria.titulo }}
+                </h3>
+
+                {% if categoria.descricao %}
+
+                <p>
+                    {{ categoria.descricao }}
+                </p>
+
+                {% else %}
+
+                <p>
+                    Sem descrição.
+                </p>
+
+                {% endif %}
+
+                <p class="categoria-slug">
+                    Slug: {{ categoria.slug }}
+                </p>
+
+            </div>
+
+            <form
+                action="{{ url_for(
+                    'excluir_categoria',
+                    slug=categoria.slug
+                ) }}"
+                method="POST"
+                onsubmit="return confirm(
+                    'Tem certeza que deseja excluir esta categoria?'
+                );"
+            >
+
+                <button
+                    type="submit"
+                    class="excluir"
+                >
+                    Excluir
+                </button>
+
+            </form>
+
+        </div>
+
+        {% else %}
+
+        <p>
+            Nenhuma categoria cadastrada.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- =====================================================
+         ADICIONAR PRODUTO
+    ====================================================== -->
+
+    <div class="bloco">
+
+        <h2>
+            Adicionar novo produto
+        </h2>
+
+        <form
+            action="{{ url_for('adicionar_produto') }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <label for="nome">
+                Nome
+            </label>
+
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Ex: Brownie de Oreo"
+                required
+            >
+
+
+            <label for="descricao">
+                Descrição
+            </label>
+
+            <textarea
+                id="descricao"
+                name="descricao"
+                placeholder="Descreva o produto..."
+                required
+            ></textarea>
+
+
+            <label for="preco">
+                Preço
+            </label>
+
+            <input
+                type="text"
+                id="preco"
+                name="preco"
+                placeholder="Ex: 10,00"
+                required
+            >
+
+
+            <label for="categoria">
+                Categoria
+            </label>
+
+            <select
+                id="categoria"
+                name="categoria"
+                required
+            >
+
+                <option value="">
+                    Selecione uma categoria
+                </option>
+
+                {% for categoria in categorias %}
+
+                <option value="{{ categoria.slug }}">
+                    {{ categoria.titulo }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label for="tags">
+                Tags
+            </label>
+
+            <input
+                type="text"
+                id="tags"
+                name="tags"
+                class="campo-tags"
+                placeholder="Ex: Novidade, + Vendido, Promoção"
+            >
+
+            <p class="aviso">
+                Separe as tags por vírgula.
+            </p>
+
+
+            <label for="imagem">
+                Imagem do produto
+            </label>
+
+            <input
+                type="file"
+                id="imagem"
+                name="imagem"
+                accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+            >
+
+            <p class="aviso">
+                PNG, JPG, GIF ou WEBP.
+                Se não enviar, será usada uma imagem padrão.
+            </p>
+
+
+            <button type="submit">
+                Adicionar produto
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- =====================================================
+         PRODUTOS
+    ====================================================== -->
+
+    <h2>
+        Produtos cadastrados
+    </h2>
+
+    {% for produto in produtos %}
+
+    <div class="produto">
+
+        <div class="produto-info">
+
+            <img
+                class="miniatura"
+                src="{{ url_for(
+                    'static',
+                    filename=produto.imagem
+                ) }}"
+                alt="{{ produto.nome }}"
+            >
+
+            <div class="produto-texto">
+
+                <h3>
+                    {{ produto.nome }}
+                </h3>
+
+                <p>
+                    {{ produto.desc }}
+                </p>
+
+                <p class="preco">
+                    R$ {{ "%.2f"|format(produto.preco) }}
+                </p>
+
+                {% for categoria in categorias %}
+
+                    {% if categoria.slug == produto.categoria %}
+
+                    <span class="categoria-produto">
+                        {{ categoria.titulo }}
+                    </span>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <div class="acoes">
+
+            <a
+                href="{{ url_for(
+                    'form_editar_produto',
+                    produto_id=produto.id
+                ) }}"
+            >
+                <button
+                    type="button"
+                    class="editar"
+                >
+                    Editar
+                </button>
+            </a>
+
+
+            <form
+                action="{{ url_for(
+                    'excluir_produto',
+                    produto_id=produto.id
+                ) }}"
+                method="POST"
+                onsubmit="return confirm(
+                    'Tem certeza que deseja excluir este produto?'
+                );"
+            >
+
+                <button
+                    type="submit"
+                    class="excluir"
+                >
+                    Excluir
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <p>
+        Nenhum produto cadastrado.
+    </p>
+
+    {% endfor %}
+
+</body>
+
+</html>

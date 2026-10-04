@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acesso admin - {{ marca }}</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f3ee;
+            color: #3b2418;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .caixa {
+            background: white;
+            padding: 32px 36px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            max-width: 420px;
+            width: 100%;
+        }
+
+        h1 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        p.subtitulo {
+            color: #7a5c4a;
+            margin: 0 0 22px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-top: 16px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #c9a14a;
+            box-shadow: 0 0 0 3px rgba(201, 161, 74, 0.15);
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 13px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #6b3e26;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #56311e;
+        }
+
+        .erro {
+            background: #fdecea;
+            color: #a83232;
+            border: 1px solid #f6c6c1;
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            font-size: 13px;
+            color: #6b3e26;
+            text-decoration: none;
+        }
+
+        .voltar:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="caixa">
+
+        <h1>Acesso restrito</h1>
+        <p class="subtitulo">
+            Digite a senha para entrar na área administrativa.
+        </p>
+
+        {% if erro %}
+        <div class="erro">
+            {{ erro }}
+        </div>
+        {% endif %}
+
+        <form
+            action="{{ url_for('login_admin') }}"
+            method="POST"
+        >
+
+            <label for="senha">Senha</label>
+            <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite a senha do administrador"
+                autofocus
+                required
+            >
+
+            <input
+                type="hidden"
+                name="next"
+                value="{{ next }}"
+            >
+
+            <button type="submit">
+                Entrar
+            </button>
+
+        </form>
+
+        <a class="voltar" href="{{ url_for('pagina_inicial') }}">
+            ← Voltar para a loja
+        </a>
+
+    </div>
+
+</body>
+
+</html>

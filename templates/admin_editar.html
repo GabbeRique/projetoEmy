@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Editar produto - {{ marca }}
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f3ee;
+            color: #3b2418;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .formulario,
+        .resumo {
+            background: white;
+            padding: 20px 24px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #6b3e26;
+            color: white;
+            font-size: 15px;
+        }
+
+        .cancelar {
+            background: #a98f77;
+        }
+
+        a {
+            color: #6b3e26;
+        }
+
+        .miniatura-atual {
+            margin-top: 12px;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            display: block;
+        }
+
+        .legenda {
+            font-size: 13px;
+            color: #7a5c4a;
+            margin-top: 6px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>
+        Editar produto
+    </h1>
+
+    <p>
+        <a href="{{ url_for('painel_admin') }}">
+            ← Voltar para Gerenciar produtos
+        </a>
+    </p>
+
+
+    <div class="resumo">
+
+        <h3 style="margin-top: 0;">
+            Produto: {{ produto.nome }}
+        </h3>
+
+        <p>
+            Imagem atual:
+        </p>
+
+        <img
+            class="miniatura-atual"
+            src="{{ url_for(
+                'static',
+                filename=produto.imagem
+            ) }}"
+            alt="{{ produto.nome }}"
+        >
+
+        <p class="legenda">
+            Para manter a mesma imagem,
+            deixe o campo abaixo em branco.
+        </p>
+
+    </div>
+
+
+    <div class="formulario">
+
+        <form
+            action="{{ url_for(
+                'salvar_edicao_produto',
+                produto_id=produto.id
+            ) }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <label for="nome">
+                Nome
+            </label>
+
+            <input
+                type="text"
+                id="nome"
+                name="nome"
+                value="{{ produto.nome }}"
+                required
+            >
+
+
+            <label for="descricao">
+                Descrição
+            </label>
+
+            <textarea
+                id="descricao"
+                name="descricao"
+                required
+            >{{ produto.desc }}</textarea>
+
+
+            <label for="preco">
+                Preço
+            </label>
+
+            <input
+                type="text"
+                id="preco"
+                name="preco"
+                value="{{ '%.2f'|format(produto.preco)|replace('.', ',') }}"
+                placeholder="Ex: 10,00"
+                required
+            >
+
+
+            <label for="categoria">
+                Categoria
+            </label>
+
+            <select
+                id="categoria"
+                name="categoria"
+                required
+            >
+
+                {% for categoria in categorias %}
+
+                <option
+                    value="{{ categoria.slug }}"
+                    {% if produto.categoria == categoria.slug %}
+                    selected
+                    {% endif %}
+                >
+                    {{ categoria.titulo }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label for="tags">
+                Tags
+            </label>
+
+            <input
+                type="text"
+                id="tags"
+                name="tags"
+                value="{{ (produto.tags or [])|join(', ') }}"
+                placeholder="Ex: Novidade, + Vendido, Promoção"
+            >
+
+            <p class="legenda">
+                Separe as tags por vírgula.
+            </p>
+
+
+            <label for="imagem">
+                Alterar imagem (opcional)
+            </label>
+
+            <input
+                type="file"
+                id="imagem"
+                name="imagem"
+                accept="image/png, image/jpeg, image/jpg, image/gif, image/webp"
+            >
+
+            <p class="legenda">
+                Envie uma nova imagem se quiser substituir
+                a atual. Formatos aceitos: PNG, JPG, GIF ou WEBP.
+            </p>
+
+
+            <div class="botoes">
+
+                <button type="submit">
+                    Salvar alterações
+                </button>
+
+                <a href="{{ url_for('painel_admin') }}">
+                    <button
+                        type="button"
+                        class="cancelar"
+                    >
+                        Cancelar
+                    </button>
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+[
+    {
+        "slug": "doces",
+        "titulo": "Doces",
+        "descricao": "Aqui você encontra nossas opções doces que não levam brownies"
+    },
+    {
+        "slug": "brownies-recheados",
+        "titulo": "Brownies Recheados",
+        "descricao": ""
+    },
+    {
+        "slug": "copo-da-felicidade",
+        "titulo": "Copo Da Felicidade",
+        "descricao": ""
+    },
+    {
+        "slug": "tradicional",
+        "titulo": "Tradicional",
+        "descricao": ""
+    },
+    {
+        "slug": "casquinha",
+        "titulo": "Casquinha",
+        "descricao": ""
+    },
+    {
+        "slug": "salgados",
+        "titulo": "Salgados",
+        "descricao": ""
+    },
+    {
+        "slug": "bebidas",
+        "titulo": "Bebidas",
+        "descricao": ""
+    }
+]
